@@ -17,7 +17,7 @@ use Mail;
 use Session;
 use Validator;
 
-class EventOrdersController extends MyBaseController
+class EventOrdersController extends ApiBaseController
 {
     /**
      * Show event orders page

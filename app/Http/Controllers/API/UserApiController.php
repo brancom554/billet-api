@@ -16,6 +16,30 @@ class UserApiController extends ApiBaseController
      * edit user 
      *
      */
+
+
+      /**
+     * @OA\Get(
+     *      path="api/user",
+     *      operationId="getUserData",
+     *      tags={"User"},
+     *      summary="Get data",
+     *      description="Returns User info",
+     *      security={ {"bearer": {}} },
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
     public function showEditUser()
     {
         $data = [
@@ -45,10 +69,48 @@ class UserApiController extends ApiBaseController
      * @param Request $request
      * @return mixed
      */
+
+
+    /**
+     * @OA\Post(
+     * path="/api/user",
+     * summary="Edit user",
+     * description="Update user info",
+     * operationId="User",
+     * tags={"User"},
+     * @OA\RequestBody(
+     *    required=true,
+     *    description="Update user",
+     *    @OA\JsonContent(
+     *       required={"email","password", "first_name", "last_name", "new_password", "new_password_confirmation"},
+     *       @OA\Property(property="email", type="string", format="email", example="cedric@gmail.com"),
+     *       @OA\Property(property="first_name", type="string", format="first_name", example="user1"),
+     *       @OA\Property(property="last_name", type="string", format="last_name", example="user2"),
+     *       @OA\Property(property="password", type="string", format="password", example="PassWord12345"),
+     *       @OA\Property(property="new_password", type="string", format="password", example="PassWord12345"),
+     *       @OA\Property(property="new_password_confirmation",  type="string", format="password", example="Try20pass"),
+     *    ),
+     * ),
+     * @OA\Response(
+     *          response="200",
+     *          description="User created successfully.",
+     *       ),
+     * @OA\Response(
+     *          response=400,
+     *          description="Bad Request",
+     *      ),
+     * @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     * @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
     public function postEditUser(Request $request)
     {
-
-        // var_dump($request);
         $rules = [
             'email'        => [
                 'required',

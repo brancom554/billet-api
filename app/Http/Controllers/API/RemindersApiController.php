@@ -45,7 +45,12 @@ class RemindersApiController extends ApiBaseController
             'data' => $this->subject
         ], 200);  : 
         
-        trans("Controllers.your_password_reset_link");
+        response()->json([
+            'success'   =>  false,
+            'data' => $this->subject,
+            'message' => trans("Controllers.your_password_reset_link")
+        ], 404);
+        
     }
 
     /**

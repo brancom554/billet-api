@@ -73,10 +73,15 @@ class UserLoginController extends Controller
         }
 
         if (Auth::attempt(['email' => $email, 'password' => $password], true) === false) {
+
             return Redirect::back()
                 ->with(['message' => trans('Controllers.login_password_incorrect'), 'failed' => true])
                 ->withInput();
         }
+
+    
+           
+
         return redirect()->intended(route('showSelectOrganiser'));
     }
 }

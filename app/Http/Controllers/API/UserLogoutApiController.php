@@ -22,6 +22,43 @@ class UserLogoutApiController extends ApiBaseController
      *
      * @return mixed
      */
+
+
+     /**
+     * @OA\Post(
+     * path="/api/logout",
+     * summary="Sign out",
+     * description="Sign out",
+     * operationId="authSignout",
+     * tags={"auth"},
+     * @OA\RequestBody(
+     *    required=true,
+     *    description="deconnect user",
+     *    @OA\JsonContent(
+     *       required={"email","password"},
+     *       @OA\Property(property="email", type="string", format="email", example="cedric@gmail.com"),
+     *       @OA\Property(property="password", type="string", format="password", example="PassWord12345"),
+     *    ),
+     * ),
+     * @OA\Response(
+     *          response="200",
+     *          description="User created successfully.",
+     *       ),
+     * @OA\Response(
+     *          response=400,
+     *          description="Bad Request",
+     *      ),
+     * @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     * @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
+     */
+
     public function doLogout()
     {
         

@@ -51,7 +51,7 @@ class UserSignupApiController extends ApiBaseController
         $is_attendize = Utils::isAttendize();
 
         return response()->json([
-            'message' => 'User successfully registered',
+            'message' => 'returned successfully',
             'attendize' => $is_attendize
         ], 201);
 
@@ -63,6 +63,44 @@ class UserSignupApiController extends ApiBaseController
      *
      * @param Request $request
      *
+     */
+
+    /**
+     * @OA\Post(
+     * path="/api/auth/signup",
+     * summary="Sign up",
+     * description="Sign up",
+     * operationId="authSignup",
+     * tags={"User"},
+     * @OA\RequestBody(
+     *    required=true,
+     *    description="Create user",
+     *    @OA\JsonContent(
+     *       required={"email","password"},
+     *       @OA\Property(property="email", type="string", format="email", example="cedric@gmail.com"),
+     *       @OA\Property(property="password", type="string", format="password", example="PassWord12345"),
+     *       @OA\Property(property="first_name", type="string", format="first_name", example="user1"),
+     *       @OA\Property(property="last_name", type="string", format="last_name", example="user2"),
+     *       @OA\Property(property="password_confirmation",  type="string", format="password", example="Try20pass"),
+     *    ),
+     * ),
+     * @OA\Response(
+     *          response="200",
+     *          description="User created successfully.",
+     *       ),
+     * @OA\Response(
+     *          response=400,
+     *          description="Bad Request",
+     *      ),
+     * @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     * @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     * )
      */
 
     public function postSignup(Request $request)
@@ -117,12 +155,44 @@ class UserSignupApiController extends ApiBaseController
         }
 
         return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user
+            'message' => 'User successfully registered'
         ], 201);
 
 
     }
+
+
+    /**
+     * @OA\Get(
+     *      path="api/signup/confirm_email/{confirmation_code}",
+     *      operationId="getConfirmationCode",
+     *      tags={"User"},
+     *      summary="Get code",
+     *      description="Returns code",
+     * 
+     *      @OA\Parameter(
+     *          name="confirmation_code",
+     *          description="",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation"
+     *       ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthenticated",
+     *      ),
+     *      @OA\Response(
+     *          response=403,
+     *          description="Forbidden"
+     *      )
+     *     )
+     */
 
     public function confirmEmail($confirmation_code)
     {

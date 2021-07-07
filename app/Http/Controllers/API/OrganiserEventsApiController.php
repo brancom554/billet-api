@@ -42,7 +42,6 @@ class OrganiserEventsApiController extends ApiBaseController
 
         return response()->json([
             'data' => $data,
-            'status' => true,
             'message' => 'Successfuly',
             ], 200);
     }

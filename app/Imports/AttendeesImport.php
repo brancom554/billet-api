@@ -34,6 +34,7 @@ class AttendeesImport implements OnEachRow, WithHeadingRow
     */
     public function onRow(Row $row)
     {
+        var_dump('rrrr');
         $rowArr = $row->toArray();
         $firstName = $rowArr['first_name'];
         $lastName = $rowArr['last_name'];
